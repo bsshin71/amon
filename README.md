@@ -12,7 +12,7 @@ monitoring shell script for ALTIBASE
 
 - 터미널 폰트 사이즈 10pt
 
-- 터미널 Logical columns size : 180 이상 ( 화면에 긴 칼럼 표시 고려)
+- 터미널 Logical columns size : 200 이상 ( 화면에 긴 칼럼 표시 고려)
 
   
 
@@ -83,38 +83,34 @@ set timing off;
 
 | 카테고리          | 메뉴명                                  | 기능                                                | sql파일명                    | 테스트된  Altibase버전 |
 | ----------------- | --------------------------------------- | --------------------------------------------------- | ---------------------------- | ---------------------- |
-| 1.General         | 11 - Instance/Database Info             | 인스턴스 및 DB 기본 정보                            | 1_instance.sql               | 5.3.5                  |
-|                   | 12 - Parameter Info                     | default값에서 변경된 파라미터 조회                  | 1_parameter.sql              | 5.3.5                  |
-|                   | 13 - Altibase Memory Info               | 메모리 사용량                                       | 1_memdata.sql                | 5.3.5                  |
-|                   |                                         | 버퍼풀 사용량                                       | 1_buffinfo.sql               | 5.3.5                  |
-|                   |                                         | 플랜캐쉬 사용량                                     | 1_plancache.sql              | 5.3.5                  |
-|                   | 14 - Memory Usage by each module        | memstat 사용량                                      | 1_memstat.sql                | 5.3.5                  |
-| 2.Cache & Latch   | 21 - Database Buffer Hit Ratio          | 버퍼캐쉬 히트율                                     | 2_bchr.sql                   | 5.3.5                  |
-|                   | 22 - Shared Cache    Hit Ratio          | 플랜캐쉬 히트율                                     | 2_sharedcache.sql            | 5.3.5                  |
-|                   | 23 - Latch Status by Each Tablespace    | 테이블스페이스별 latch 사용정보                     | 2_latch.sql                  | 5.3.5                  |
-| 3.SESSION         | 31 - Current Session Info               | 세션 정보                                           | 3_current_session.sql        | 5.3.5                  |
-|                   | 32 - Current Running Session Info       | Active 세션 정보                                    | 3_run_session.sql            | 5.3.5                  |
-|                   | 33 - Current Running Session Wait Info  | Running 중인 세션의 wait 이벤트                     | 3_run_session_wait_5.sql     | 5.3.5                  |
-|                   |                                         |                                                     |                              |                        |
-|                   | 34 - Running Session SQL Info           | Running 중인 세션의 SQL 구문 전체 조회              | 3_running_sql.sql            | 5.3.5                  |
-|                   | 35 - Current Transaction                | 세션별로 실행중인 TX 및 TX 상태                     | 3_current_transaction_5.sql  | 5.3.5                  |
-|                   |                                         |                                                     |                              |                        |
-|                   | 36 - Open Cursor                        | 세션별 statement  갯수                              | 3_open_cursor.sql            | 5.3.5                  |
+| 1.General         | 11 - Instance/Database Info             | 인스턴스 및 DB 기본 정보                            | 1_instance.sql               | 5.3.5/6.5.1            |
+|                   | 12 - Parameter Info                     | default값에서 변경된 파라미터 조회                  | 1_parameter.sql              | 5.3.5/6.5.1            |
+|                   | 13 - Altibase Memory Info               | 메모리 사용량                                       | 1_memdata.sql                | 5.3.5/6.5.1            |
+|                   |                                         | 버퍼풀 사용량                                       | 1_buffinfo.sql               | 5.3.5/6.5.1            |
+|                   |                                         | 플랜캐쉬 사용량                                     | 1_plancache.sql              | 5.3.5/6.5.1            |
+|                   | 14 - Memory Usage by each module        | memstat 사용량                                      | 1_memstat.sql                | 5.3.5/6.5.1            |
+| 2.Cache & Latch   | 21 - Database Buffer Hit Ratio          | 버퍼캐쉬 히트율                                     | 2_bchr.sql                   | 5.3.5/6.5.1            |
+|                   | 22 - Shared Cache    Hit Ratio          | 플랜캐쉬 히트율                                     | 2_sharedcache.sql            | 5.3.5/6.5.1            |
+|                   | 23 - Latch Status by Each Tablespace    | 테이블스페이스별 latch 사용정보                     | 2_latch.sql                  | 5.3.5/6.5.1            |
+| 3.SESSION         | 31 - Current Session Info               | 세션 정보                                           | 3_current_session.sql        | 5.3.5/6.5.1            |
+|                   | 32 - Current Running Session Info       | Active 세션 정보                                    | 3_run_session.sql            | 5.3.5/6.5.1            |
+|                   | 33 - Current Running Session Wait Info  | Running 중인 세션의 wait 이벤트                     | 3_run_session_wait.sql       | 5.3.5/6.5.1            |
+|                   | 34 - Running Session SQL Info           | Running 중인 세션의 SQL 구문 전체 조회              | 3_running_sql.sql            | 5.3.5/6.5.1            |
+|                   | 35 - Current Transaction                | 세션별로 실행중인 TX 및 TX 상태                     | 3_current_transaction.sql    | 5.3.5/6.5.1            |
+|                   | 36 - Open Cursor                        | 세션별 statement  갯수                              | 3_open_cursor.sql            | 5.3.5/6.5.1            |
 | 4.WAIT EVENT/LOCK | 41 - Current Lock Info                  | Lock 이 잡힌 객체 조회                              | 4_lockobj_5.sql              | 5.3.5                  |
-|                   |                                         |                                                     |                              |                        |
+|                   |                                         |                                                     | 4_lockobj_6.sql              | 6.5.1                  |
 |                   | 42 - Hierarchical Lock Inf              | Lock 대기상태를 계층구조로 표시                     | 4_hierarchical_lock_5.sql    | 5.3.5                  |
-|                   |                                         |                                                     |                              |                        |
-|                   | 43 - System Event                       | 시스템 이벤트 Wait 정보                             | 4_system_event.sql           | 5.3.5                  |
+|                   |                                         |                                                     | 4_hierarchical_lock_6.sql    | 6.5.1                  |
+|                   | 43 - System Event                       | 시스템 이벤트 Wait 정보                             | 4_system_event.sql           | 5.3.5/6.5.1            |
 |                   | 44 - Session Event                      | 세션별 이벤트 Wait 정보                             | 4_session_event.sh           | 5.3.5                  |
-|                   |                                         |                                                     | 4_session_event.sql          | 5.3.5                  |
-|                   | 45 - Session Wait                       | 세션별 Wait 이베벤트 및 대기시간                    | 4_session_wait_5.sql         | 5.3.5                  |
-|                   |                                         |                                                     |                              |                        |
-|                   | 46 - Sysstat                            | sysstat                                             | 4_sysstat.sql                | 5.3.5                  |
-|                   | 47 - Prepared Logfile Info              | Prepared Log 파일                                   | 4_preparedlogfile.sql        | 5.3.5                  |
-| 5.SPACE           | 51 - Database File Info                 | 로그 앵커 경로                                      | 5_loganchor.sql              | 5.3.5                  |
-|                   |                                         | 온라인로그 경로                                     | 5_logfile.sql                | 5.3.5                  |
-|                   |                                         | 데이타파일별 경로 및 사용량                         | 5_datafile_5.sql             | 5.3.5                  |
-|                   |                                         |                                                     |                              |                        |
+|                   |                                         |                                                     | 4_session_event.sql          | 5.3.5/6.5.1            |
+|                   | 45 - Session Wait                       | 세션별 Wait 이베벤트 및 대기시간                    | 4_session_wait.sql           | 5.3.5/6.5.1            |
+|                   | 46 - Sysstat                            | sysstat                                             | 4_sysstat.sql                | 5.3.5/6.5.1            |
+|                   | 47 - Prepared Logfile Info              | Prepared Log 파일                                   | 4_preparedlogfile.sql        | 5.3.5/6.5.1            |
+| 5.SPACE           | 51 - Database File Info                 | 로그 앵커 경로                                      | 5_loganchor.sql              | 5.3.5/6.5.1            |
+|                   |                                         | 온라인로그 경로                                     | 5_logfile.sql                | 5.3.5/6.5.1            |
+|                   |                                         | 데이타파일별 경로 및 사용량                         | 5_datafile.sql               | 5.3.5/6.5.1            |
 |                   | 52 - Tablespace Usage                   | 테이블스페이별 사용량                               | 5_tbs_5.sql                  | 5.3.5                  |
 |                   |                                         |                                                     |                              |                        |
 |                   | 53 - Undo Space Total Usage             | Undo 테이블스페이스 사용량                          | 5_undousage_5.sq             |                        |
