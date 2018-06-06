@@ -1,5 +1,5 @@
 set feedback off;
-set linesize 140;
+set linesize 180;
 set colsize 20;
 set timing off;
 select 
