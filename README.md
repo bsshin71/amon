@@ -20,6 +20,9 @@ monitoring shell script for ALTIBASE
 
 ![](https://t1.daumcdn.net/cfile/tistory/994666485B179FDB13)
 
+## 설치
+mon.sh 과  sql 폴더 전체를 다운로드 받아서  설치하면 된다.
+
 ## 설정
 
 ```shell
