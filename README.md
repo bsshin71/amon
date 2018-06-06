@@ -7,11 +7,18 @@ monitoring shell script for ALTIBASE
 ## 사용환경
 
 - Linux
+
 - bash shell
+
 - 터미널 폰트 사이즈 10pt
+
 - 터미널 Logical columns size : 180 이상 ( 화면에 긴 칼럼 표시 고려)
 
+  
 
+## 실행 화면
+
+![](C:\Users\omegaman\Pictures\amon.GIF)
 
 ## 설정
 
