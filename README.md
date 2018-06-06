@@ -1,3 +1,76 @@
+# amon
+
+monitoring shell script for ALTIBASE 
+
+
+
+## 사용환경
+
+- Linux
+- bash shell
+- 터미널 폰트 사이즈 10pt
+- 터미널 Logical columns size : 180 이상 ( 화면에 긴 칼럼 표시 고려)
+
+
+
+## 설정
+
+```shell
+mon.sh 안에 아래 아래 설정값 셋팅 필요,  패스워드 미 설정시 실행시 입력이 필요
+# Configuration --------------------------------
+MONITOR=./; export MONITOR
+USER=sys; export USER
+PASS=manager; export PASS
+OS=`uname -s`; export OS
+OSVER=`uname -r`; export OSVER
+ALTI_VER_CHK=5 ; export ALTI_VER_CHK
+ALTIBASE_PORT_NO=20300; export ALTIBASE_PORT_NO
+```
+
+
+
+## 실행
+
+```shell
+$bash mon.sh
+또는
+$./mon.sh
+```
+
+
+
+## 버전별 SQL 파일 호출
+
+sql 디렉토리안에  mon.sh 에서 호출하는 sql 파일들이 존재한다.  altibase는 버전별로 메타테이블이나  V$ 테이블에 변경이 있어서   sql 구문이 조금씩  다를 수 있으므로 버전에 맞는  sql 파일들이 별도로 존재해야 한다.
+
+mon.sh 파일 실행시 altibase 의 메이저 버전을 체크한 후 이 메이저 버전을 위한 sql 파일이 존재할 경우 해당 버전에 맞는 sql 파일을 자동으로 호출한다.
+
+예를 들어서 데이타 파일 정보를 조회하기 위한 sql 파일이  sql/5_datafile_5.sql   , sql/5_datafile_6.sql  두개가 있는 경우 현재 접속한 DB 버전이 A6 인 경우는  5_datafile_6.sq 이 호출된다.
+
+
+
+## SQL 파일 작성법
+
+Altibase  하위 버전에서는 isql 에서 set echo off 기능을 제공하고 있지 않으므로 결과 출력시 실행 쿼리문이 보이지 않기 위해서  mon.sh 에서 직접 그 기능을 구현하였다.  shell script에서는  화면 출력의 시작을 sqlend 로 구분하므로  모든 쿼리문의  끝부분에  ; 바로 앞에 sqlend 문장을 기입하여야 한다. 
+
+set echo off 기능이 구현대 A7 에서는 필요없지만 하위버전에서는 필요한 기능이므로 모든 SQL 파일에 기입해야 한다.  mon.sh 를 열어보면 그 이유를 이해할 수 있다.
+
+```sql
+set feedback off;
+set linesize 140;
+set colsize 40;
+set timing off;
+  select
+          trunc( POOL_SIZE * PAGE_SIZE /1024/1024 ) as "DB Buffer (MB)"
+  from V$BUFFPOOL_STAT
+--sqlend       <-----이렇게 sqlend 로  반드시 종료시켜야 한다
+;
+```
+
+
+
+## 구현 목록
+
 | 카테고리          | 메뉴명                                  | 기능                                                | sql파일명                    | 테스트된  Altibase버전 |
 | ----------------- | --------------------------------------- | --------------------------------------------------- | ---------------------------- | ---------------------- |
 | 1.General         | 11 - Instance/Database Info             | 인스턴스 및 DB 기본 정보                            | 1_instance.sql               | 5.3.5                  |
@@ -71,3 +144,4 @@
 |                   | 94 - Replication TX Info(Not yet)       |                                                     |                              |                        |
 | 0.OTHER           | M - Auto Refresh Monitoring(Not yet)    |                                                     |                              |                        |
 |                   | S - Save To File(Not yet)               |                                                     |                              |                        |
+
