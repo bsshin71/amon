@@ -1,7 +1,7 @@
 set feedback off;
 set timing off;
 set linesize 1024;
-set colsize 64;
+set colsize 30;
 select
          lpad(id               ,10, ' ')   AS "SessionID"
         ,lpad(DB_USERNAME      ,10, ' ')   AS "Username"
