@@ -18,7 +18,7 @@ monitoring shell script for ALTIBASE
 
 ## 실행 화면
 
-![](C:\Users\omegaman\Pictures\amon.GIF)
+![](https://t1.daumcdn.net/cfile/tistory/994666485B179FDB13)
 
 ## 설정
 
