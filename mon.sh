@@ -1,7 +1,8 @@
+#!/bin/bash
+
 #-------------------------------------------------------------------------------
 # 2018.05.07 created by omegaman                       (Ver1.0)
 #-------------------------------------------------------------------------------
-
 
 
 # Message Function -----------------------------
@@ -146,7 +147,7 @@ PASS=manager; export PASS
 OS=`uname -s`; export OS
 OSVER=`uname -r`; export OSVER
 ALTI_VER_CHK=5 ; export ALTI_VER_CHK
-ALTIBASE_PORT_NO=30300; export ALTIBASE_PORT_NO
+ALTIBASE_PORT_NO=20300; export ALTIBASE_PORT_NO
 
 
 # Message Printing -----------------------------
@@ -170,7 +171,7 @@ clear
 pr_version
 echo "  Altibase Version :"$ALTI_VER_CHK "(column FORMAT: "`cat $MONITOR/sql/sqlid_format.sql`")"
 echo " -----------------------------------------------------------------------------------"
-echo "  1.GENERAL                               |  2.SHARED MEMORY                        "
+echo "  1.GENERAL                               |  2.Cache & Latch                        "
 echo " ---------------------------------------- + ----------------------------------------"
 echo "  11 - Instance/Database Info             |  21 - Database Buffer Hit Ratio         "
 echo "  12 - Parameter Info                     |  22 - Shared Cache    Hit Ratio         "
@@ -186,7 +187,6 @@ echo "  34 - Running Session SQL Info           |  44 - Session Event           
 echo "  35 - Current Transaction                |  45 - Session Wait                      "
 echo "  36 - Open Cursor                        |  46 - Sysstat                           "
 echo "                                          |  47 - Prepared Logfile Info             "
-echo "                                          |                                         "
 echo "                                          |                                         "
 echo " -----------------------------------------------------------------------------------"
 echo "  5.SPACE                                 |  6.I/O                                  "
@@ -204,18 +204,20 @@ echo "  71 - Schema Object Count                |  81 - SQL Plan(Input SQL_ID)  
 echo "  72 - Object Invalid Count               |  82 - Top SQL                           "
 echo "  73 - Invalid Object List                |  83 - Check Static Query Pattern        "
 echo "  74 - Segment Size(Top 50)               |                                         "
+echo "                                          |                                         "
 echo " -----------------------------------------------------------------------------------"
-echo "  9.APM (Use Carefully)                   |  0.OTHER                                "
+echo "  9.Replication                           |  0.OTHER                                "
 echo " ---------------------------------------- + ----------------------------------------"
-echo "  91 - Create APM Snapshot                |  M - Auto Refresh Monitoring            "
-echo "  92 - Create APM Snapshot For TAC        |  S - Save To File                       "
-echo "  93 - Show APM Snapshot                  |  I - Setting SQL_ID Format              "
-echo "  94 - Create APM Report                  |  X - EXIT                               "
+echo "  91 - Replication Thread Status(Not yet) |  M - Auto Refresh Monitoring(Not yet)   "
+echo "  92 - Replication Info(Not yet)          |  S - Save To File(Not yet)              "
+echo "  93 - Replication Gap Info(Not yet)      |                                         "
+echo "  94 - Replication TX Info(Not yet)       |  X - EXIT                               "
 echo " -----------------------------------------------------------------------------------"
-echo
+echo ""
 
-if [ $OS = "Linux" ] ; then
-  echo -e " Choose the Number or Command : \c "
+
+if [ "$OS" = "Linux" ] ; then
+   echo -e " Choose the Number or Command : \c "
 elif [ $OS = "SunOS" ] ; then
   if [ $OSVER = "5.10" ] ; then
     echo ' Choose the Number or Command : \c '
@@ -227,6 +229,7 @@ else
 fi
 read i_number
 case $i_number in
+
 # 1.GENERAL ---------------------------------------
 
 11)
@@ -592,7 +595,7 @@ clear
 echo "========================"
 echo "   SQL Plan(Input SQL_ID) "
 echo "========================"
-#run_sql_version 7_segment_size.sql 
+#run_sql_version 
 echo " Not Prepared yet"
 pr_done
 read tm
