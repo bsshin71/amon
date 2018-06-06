@@ -1,0 +1,1 @@
+set colsize 10
