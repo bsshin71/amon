@@ -12,20 +12,26 @@ select
         ,lpad(DATA_FILE           ,30, ' ')   AS "DataFile"
 from
 (
- select decode(LOCK_ITEM_TYPE, NULL, 'Abnormal', 'TBS', 'TableSpace', 'TBL', 'Table', 'DBF', 'DataFile', 'UNKNOWN' ) AS LOCK_ITEM_TYPE
+ select decode(vlock.LOCK_ITEM_TYPE, NULL, 'Abnormal', 'TBS', 'TableSpace', 'TBL', 'Table', 'DBF', 'DataFile', 'UNKNOWN' ) AS LOCK_ITEM_TYPE
        , vss.id            AS SID
        , vss.DB_USERNAME   AS DB_USERNAME
        , vts.name          AS TBS_NAME
        , tbl.table_name    AS TABLE_NAME
        , vlock.LOCK_DESC   AS LOCK_DESC
        , vdbf.name         AS DATA_FILE
- from  
-       v$lock vlock 
+ from
+       v$lock vlock
        left   outer join system_.sys_tables_ tbl
               on vlock.table_oid  = tbl.table_oid
-       left outer join v$tablespaces vts 
+       left outer join v$tablespaces vts
               on vlock.tbs_id     = vts.id
-       left outer join v$statement  vst  
+       left outer join (
+		            select    
+			            session_id
+			           , tx_id
+			    from v$statement
+		            group by session_id , tx_id
+                       )  vst
               on vlock.TRANS_ID = vst.TX_ID
        left outer join v$session   vss
               on vst.SESSION_ID = vss.id
@@ -35,3 +41,5 @@ from
  LIMIT 100
 --sqlend
 ;
+
+          

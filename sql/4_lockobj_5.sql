@@ -25,7 +25,12 @@ from
               on vlock.table_oid  = tbl.table_oid
        left outer join v$tablespaces vts 
               on vlock.tbs_id     = vts.id
-       left outer join v$statement  vst  
+       left outer join ( select   
+                                 session_id 
+                               , tx_id 
+                         from v$statement 
+                         group by session_id , tx_id  
+                       )  vst  
               on vlock.TRANS_ID = vst.TX_ID
        left outer join v$session   vss
               on vst.SESSION_ID = vss.id
