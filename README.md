@@ -3,7 +3,7 @@
 monitoring shell script for ALTIBASE 
 
 chart기능이 지원되는 모니터링 시스템은  https://github.com/bsshin71/ams 입니다.
-
+![](https://t1.daumcdn.net/cfile/tistory/99916B455B580E061A)
 
 ## 사용환경
 
