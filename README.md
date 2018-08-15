@@ -4,8 +4,6 @@ amon make it easy for monitoring ALTIBASE.
 it is composed of  a bunch of sql files to check ALTIBASE state and a shell script to run sql files.
 
 chart기능이 지원되는 모니터링 시스템은  https://github.com/bsshin71/ams 입니다.
-아래의 화면을 참고 하시고 https://github.com/bsshin71/ams 로 이동해서 확인하십시요.
-![](https://t1.daumcdn.net/cfile/tistory/99916B455B580E061A)
 
 ## 사용환경
 
